@@ -117,7 +117,7 @@ namespace Expenses
         {
             foreach (var item in itemsList)
             {
-                Console.WriteLine($"{item.name} | {item.price}NOK");
+                Console.WriteLine($"{item.name} | {item.price} NOK | {item.price/10} EURO");
             }
         }
         /*
