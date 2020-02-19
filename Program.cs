@@ -25,18 +25,23 @@ namespace Expenses
             
             while (true)
             {
-                Console.WriteLine("Choose command (add, calculate, exit)");
+                Console.WriteLine("Choose command (add, remove, display, calculate, exit)");
                 string operation = Console.ReadLine();
                 if (operation.ToLower() == "add")
                 {
                     Add(foodList);
                 }
-                /*
+                
                 else if (operation.ToLower() == "remove")
                 {
-                    Remove();
+                    Remove(foodList);
                 }
-                */
+                
+                else if (operation.ToLower() == "display")
+                {
+                    DisplayList(foodList);
+                }
+                
                 else if (operation.ToLower() == "calculate")
                 {
                     Calculate(foodList);
@@ -51,6 +56,16 @@ namespace Expenses
                 {
                     Console.WriteLine("Bye bye");
                     break;
+                }
+                
+                else if (operation == String.Empty)
+                {
+                    Console.WriteLine("You didn't enter anything. Please enter command");
+                }
+
+                else
+                {
+                    Console.WriteLine("Incorrect command");
                 }
             }
         }
@@ -72,21 +87,38 @@ namespace Expenses
             
             itemsList.Add(item);
         }
-        /*
-        static void Remove()
+        
+        static void Remove(List<Food> itemsList)
         {
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                Console.WriteLine($"{itemsList[i].name} | index: {i}");
+            }
             
+            Console.WriteLine("Enter index of item to remove");
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            itemsList.RemoveAt(index);
         }
-        */
+        
 
         static void Calculate(List<Food> itemsList)
         {
             int result = 0;
             for (int i = 0; i < itemsList.Count; i++)
             {
-                result += itemsList[i].price;
+                Console.WriteLine($"{itemsList[i].name} | {itemsList[i].price}NOK | purchase in a week: {itemsList[i].quantityPerWeek}");
+                result += (itemsList[i].price * itemsList[i].quantityPerWeek) * 4;
             }
-            Console.WriteLine(result);
+            Console.WriteLine($"TOTAL: {result} NOK | {result/10} EURO");
+        }
+
+        static void DisplayList(List<Food> itemsList)
+        {
+            foreach (var item in itemsList)
+            {
+                Console.WriteLine($"{item.name} | {item.price}NOK");
+            }
         }
         /*
         static void Save()
