@@ -1,0 +1,11 @@
+D:\Development\C#\Expenses\obj\Debug\netcoreapp3.1\Expenses.csprojAssemblyReference.cache
+D:\Development\C#\Expenses\obj\Debug\netcoreapp3.1\Expenses.AssemblyInfoInputs.cache
+D:\Development\C#\Expenses\obj\Debug\netcoreapp3.1\Expenses.AssemblyInfo.cs
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.exe
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.deps.json
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.runtimeconfig.json
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.runtimeconfig.dev.json
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.dll
+D:\Development\C#\Expenses\bin\Debug\netcoreapp3.1\Expenses.pdb
+D:\Development\C#\Expenses\obj\Debug\netcoreapp3.1\Expenses.dll
+D:\Development\C#\Expenses\obj\Debug\netcoreapp3.1\Expenses.pdb
