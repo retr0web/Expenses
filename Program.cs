@@ -20,7 +20,6 @@ namespace Expenses
                 "type exit to finish the program"
             );
             
-            int finish = 0; 
             List<Food> foodList = new List<Food>();
             
             while (true)
@@ -42,16 +41,21 @@ namespace Expenses
                     DisplayList(foodList);
                 }
                 
-                else if (operation.ToLower() == "calculate")
+                else if (operation.ToLower() == "result")
                 {
-                    Calculate(foodList);
+                    Result(foodList);
                 }
-                /*
-                if (operation.ToLower() == "save")
+                
+                else if (operation.ToLower() == "total")
                 {
-                    Save();
+                    Console.WriteLine(Total(foodList));
                 }
-                */
+                
+                else if (operation.ToLower() == "save")
+                {
+                    Save(foodList);
+                }
+                
                 else if (operation.ToLower() == "exit")
                 {
                     Console.WriteLine("Bye bye");
@@ -102,15 +106,26 @@ namespace Expenses
         }
         
 
-        static void Calculate(List<Food> itemsList)
+        static void Result(List<Food> itemsList)
         {
-            int result = 0;
+            float result = 0;
             for (int i = 0; i < itemsList.Count; i++)
             {
-                Console.WriteLine($"{itemsList[i].name} | {itemsList[i].price}NOK | purchase in a week: {itemsList[i].quantityPerWeek}");
+                Console.WriteLine($"{itemsList[i].name} | {itemsList[i].price}NOK (per month: {itemsList[i].price/10}) " +
+                                  $"| purchase in a week: {itemsList[i].quantityPerWeek}");
                 result += (itemsList[i].price * itemsList[i].quantityPerWeek) * 4;
             }
             Console.WriteLine($"TOTAL: {result} NOK | {result/10} EURO");
+        }
+
+        static string Total(List<Food> itemsList)
+        {
+            float result = 0;
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                result += (itemsList[i].price * itemsList[i].quantityPerWeek) * 4;
+            }
+            return "TOTAL: " + result +" NOK | " + result/10 + " EURO";
         }
 
         static void DisplayList(List<Food> itemsList)
@@ -120,12 +135,21 @@ namespace Expenses
                 Console.WriteLine($"{item.name} | {item.price} NOK | {item.price/10} EURO");
             }
         }
-        /*
-        static void Save()
-        {
-            
-        }
-        */
         
+        static void Save(List<Food> itemsList)
+        {
+            using (System.IO.StreamWriter file = 
+                new System.IO.StreamWriter(@"C:\Users\User\Documents\test\WriteLines2.txt"))
+            {
+                file.WriteLine("------ Item list ------");
+                foreach (var item in itemsList)
+                {
+                    file.WriteLine($"name: {item.name} | price : {item.price} | quantity per week: {item.quantityPerWeek}");
+                }
+                file.WriteLine("------ End of item list ------");
+                file.WriteLine(Total(itemsList));
+                file.Close();
+            }
+        }
     }
 }
